@@ -1,14 +1,14 @@
-import { Box } from '@mui/material'
-import React from 'react'
+import React from 'react';
+import Container from 'react-bootstrap/Container';
 
-const Footer = () => {
+function FooterComponent() {
     return (
-        <>
-            <Box sx={{ bgcolor: "rgba(0,0,0,.7)", height: "60px", display: "flex", justifyContent: "center", alignItems: "center" }}>
-                <Box sx={{ color: "#fafafa" }}>Footer</Box>
-            </Box>
-        </>
-    )
+        <footer className="bg-dark text-white py-3">
+            <Container className="text-center">
+                © {new Date().getFullYear()} Walking-Dog. All rights reserved.
+            </Container>
+        </footer>
+    );
 }
 
-export default Footer
+export default FooterComponent;

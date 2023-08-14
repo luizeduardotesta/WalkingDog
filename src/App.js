@@ -4,20 +4,20 @@ import Home from './pages/Home'
 import NotFound from './pages/NotFound'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { ProSidebarProvider } from 'react-pro-sidebar'
+import Appointment from './pages/Appointment';
 
 function App() {
   return (
     <div>
       <ToastContainer />
-      <ProSidebarProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </ProSidebarProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="*" element={<NotFound />} />
+          <Route path="/appointment" element={<Appointment />} />
+        </Routes>
+      </BrowserRouter>
+
     </div>
   )
 }
