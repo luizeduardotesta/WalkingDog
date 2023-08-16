@@ -1,6 +1,6 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import { composeWithDevTools } from '@redux-devtools/extensions';
+import { composeWithDevTools } from '@redux-devtools/extension';
 import { userReducerSignUp, userReducerSignIn, userReducerProfile, userReducerLogout } from './reducers/userReducer';
 
 // combine reducers

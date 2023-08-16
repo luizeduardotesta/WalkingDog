@@ -8,7 +8,7 @@ import './navbar.css';
 import { useSelector } from 'react-redux';
 
 function NavbarComponent() {
-    const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+    const isAuthenticated = useSelector(state => state.singin.isAuthenticated); // Access isAuthenticated from userReducerSignIn
 
     return (
         <Navbar expand="lg" bg="dark" variant="dark">

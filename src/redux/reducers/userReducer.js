@@ -15,39 +15,14 @@ import {
     USER_SIGNUP_REQUEST,
     USER_SIGNUP_RESET,
     USER_SIGNUP_SUCCESS
-} from "../constants/userConstant";
+} from "../constants/userConstant"
 
 
-export function userReducerSignUp(state = {}, action) {
-    switch (action.type) {
-        case USER_SIGNUP_REQUEST:
-            return { loading: true }
-        case USER_SIGNUP_SUCCESS:
-            return {
-                loading: false,
-                userSingUp: action.payload
-            }
-        case USER_SIGNUP_FAIL:
-            return {
-                loading: false,
-                error: action.payload
-            }
-        case USER_SIGNUP_RESET:
-            return {}
-
-        default:
-            return state;
-    }
-}
-
-export function userReducerSignIn(state = {}, action) {
+// sign In reducer
+export const userReducerSignIn = (state = {}, action) => {
     switch (action.type) {
         case USER_SIGNIN_REQUEST:
-            return {
-                loading: true,
-                userInfo: null,
-                isAuthenticated: false
-            }
+            return { loading: true, userInfo: null, isAuthenticated: false }
         case USER_SIGNIN_SUCCESS:
             return {
                 loading: false,
@@ -55,68 +30,72 @@ export function userReducerSignIn(state = {}, action) {
                 isAuthenticated: true
             }
         case USER_SIGNIN_FAIL:
-            return {
-                loading: false,
-                userInfo: null,
-                isAuthenticated: false,
-                error: action.payload
-            }
+            return { loading: false, userInfo: null, isAuthenticated: false, error: action.payload }
         case USER_SIGNIN_RESET:
             return {}
-
         default:
             return state;
     }
 }
 
+// sign up reducer
+export const userReducerSignUp = (state = {}, action) => {
+    switch (action.type) {
+        case USER_SIGNUP_REQUEST:
+            return { loading: true }
+        case USER_SIGNUP_SUCCESS:
+            return {
+                loading: false,
+                userSignUp: action.payload,
+            }
+        case USER_SIGNUP_FAIL:
+            return { loading: false, error: action.payload }
+        case USER_SIGNUP_RESET:
+            return {}
+        default:
+            return state;
+    }
+}
 
-export function userReducerProfile(state = { user: null }, action) {
+//user profile
+export const userReducerProfile = (state = { user: null }, action) => {
     switch (action.type) {
         case USER_LOAD_REQUEST:
-            return {
-                loading: true,
-                user: null
-            }
+            return { loading: true, user: null }
         case USER_LOAD_SUCCESS:
             return {
                 loading: false,
-                userInfo: action.payload.user
+                user: action.payload.user,
             }
         case USER_LOAD_FAIL:
-            return {
-                loading: false,
-                user: null,
-                error: action.payload
-            }
+            return { loading: false, user: null, error: action.payload }
         case USER_LOAD_RESET:
             return {}
-
         default:
             return state;
     }
+
 }
 
-
-export function userReducerLogout(state = {}, action) {
+//log out reducer
+export const userReducerLogout = (state = {}, action) => {
     switch (action.type) {
         case USER_LOGOUT_REQUEST:
             return { loading: true }
         case USER_LOGOUT_SUCCESS:
             return {
                 loading: false,
-                userSingUp: action.payload
+                user: action.payload,
             }
         case USER_LOGOUT_FAIL:
-            return {
-                loading: false,
-                error: action.payload
-            }
+            return { loading: false, error: action.payload }
         case USER_LOGOUT_RESET:
             return {}
-
         default:
             return state;
     }
+
 }
 
-export default { userReducerSignUp, userReducerSignIn, userReducerProfile, userReducerLogout };
+
+
