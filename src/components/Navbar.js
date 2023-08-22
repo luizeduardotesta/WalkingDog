@@ -4,20 +4,28 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { NavLink } from 'react-router-dom';
-import './navbar.css';
+import './Navbar.css';
 import { useSelector } from 'react-redux';
 
 function NavbarComponent() {
-    const isAuthenticated = useSelector(state => state.singin.isAuthenticated); // Access isAuthenticated from userReducerSignIn
+    const isAuthenticated = useSelector(state => state.signIn.isAuthenticated);
 
     return (
         <Navbar expand="lg" bg="dark" variant="dark">
             <Container>
-                <Navbar.Brand as={NavLink} to="/">Walking-Dog</Navbar.Brand>
+                <Navbar.Brand as={NavLink} to="/">
+                    <div>Walking-Dog</div>
+                </Navbar.Brand>
                 <Nav className="d-flex justify-content-center">
-                    <Nav.Link as={NavLink} to="/appointment">Agende um horário</Nav.Link>
-                    <Nav.Link as={NavLink} to="/prices">Conheça nossos planos</Nav.Link>
-                    <Nav.Link as={NavLink} to="/register">Registre-se</Nav.Link>
+                    <Nav.Link as={NavLink} to="/appointment">
+                        <div className="nav-text">Agende um horário</div>
+                    </Nav.Link>
+                    <Nav.Link as={NavLink} to="/prices">
+                        <div className="nav-text">Conheça nossos planos</div>
+                    </Nav.Link>
+                    <Nav.Link as={NavLink} to="/register">
+                        <div className="nav-text">Quem sou eu</div>
+                    </Nav.Link>
                 </Nav>
                 <Nav className="ms-auto">
                     {isAuthenticated ? (
@@ -26,7 +34,9 @@ function NavbarComponent() {
                             <NavDropdown.Item href="#action/3.2">Meus Horarios</NavDropdown.Item>
                         </NavDropdown>
                     ) : (
-                        <Nav.Link as={NavLink} to="/login">Entrar</Nav.Link>
+                        <Nav.Link as={NavLink} to="/login">
+                            <div className="nav-text">Entrar</div>
+                        </Nav.Link>
                     )}
                 </Nav>
             </Container>

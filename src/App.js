@@ -12,6 +12,8 @@ import NavbarComponent from "./components/Navbar";
 import FooterComponent from './components/Footer';
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import Prices from './pages/Prices';
+import AboutMe from './pages/AboutMe';
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
             <Route path="/appointment" element={<Appointment />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<LogIn />} />
+            <Route path="/prices" element={<Prices />} />
+            <Route path="/aboutme" element={<AboutMe />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <FooterComponent />

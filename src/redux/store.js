@@ -5,10 +5,10 @@ import { userReducerSignUp, userReducerSignIn, userReducerProfile, userReducerLo
 
 // combine reducers
 const reducer = combineReducers({
-    singup: userReducerSignUp,
-    singin: userReducerSignIn,
-    userProfile: userReducerProfile,
-    logout: userReducerLogout
+    signIn: userReducerSignIn,
+    signUp: userReducerSignUp,
+    logOut: userReducerLogout,
+    userProfile: userReducerProfile
 });
 
 // initial state
