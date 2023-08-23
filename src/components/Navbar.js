@@ -4,8 +4,8 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { NavLink } from 'react-router-dom';
-import './Navbar.css';
 import { useSelector } from 'react-redux';
+import './Navbar.css';
 
 function NavbarComponent() {
     const isAuthenticated = useSelector(state => state.signIn.isAuthenticated);
@@ -30,12 +30,21 @@ function NavbarComponent() {
                 <Nav className="ms-auto">
                     {isAuthenticated ? (
                         <NavDropdown title="Perfil" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="#action/3.1">editar</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">Meus Horarios</NavDropdown.Item>
+                            <NavDropdown.Item as={NavLink} to="/user/dashboard">
+                                <i class="bi bi-pencil-square"> Editar</i>
+                            </NavDropdown.Item>
+                            <NavDropdown.Item href="/admin/appointment/create">
+                                <i class="bi bi-clock-history"> Meus Horarios</i>
+                            </NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.3">
+                                <i class="bi bi-door-open-fill"> Sair</i>
+                            </NavDropdown.Item>
                         </NavDropdown>
                     ) : (
                         <Nav.Link as={NavLink} to="/login">
-                            <div className="nav-text">Entrar</div>
+                            <div className="nav-text">
+                                <i class="bi bi-door-closed-fill"> Entrar</i>
+                            </div>
                         </Nav.Link>
                     )}
                 </Nav>

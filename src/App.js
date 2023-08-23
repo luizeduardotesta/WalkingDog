@@ -14,6 +14,12 @@ import { Provider } from 'react-redux';
 import store from './redux/store';
 import Prices from './pages/Prices';
 import AboutMe from './pages/AboutMe';
+import AdminDashboard from './admin/AdminDashboard';
+import UserDashboard from './user/UserDashboard';
+import EditAppointment from './admin/EditAppointment';
+import CreateAppointment from './admin/CreateAppointment';
+import AdminRoute from './components/AdminRoute';
+import UserRoute from './components/UserRoute';
 
 function App() {
   return (
@@ -29,6 +35,10 @@ function App() {
             <Route path="/login" element={<LogIn />} />
             <Route path="/prices" element={<Prices />} />
             <Route path="/aboutme" element={<AboutMe />} />
+            <Route path="/admin/dashboard" element={<AdminDashboard />} />
+            <Route path="/admin/appointment/create" element={<CreateAppointment />} />
+            <Route path="/admin/appointment/edit/:id" element={<EditAppointment />} />
+            <Route path="/user/dashboard" element={<UserDashboard />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <FooterComponent />
