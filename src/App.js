@@ -21,6 +21,7 @@ import CreateAppointment from './admin/CreateAppointment';
 import AdminRoute from './components/AdminRoute';
 import UserRoute from './components/UserRoute';
 
+
 function App() {
   return (
     <div>
@@ -35,10 +36,10 @@ function App() {
             <Route path="/login" element={<LogIn />} />
             <Route path="/prices" element={<Prices />} />
             <Route path="/aboutme" element={<AboutMe />} />
-            <Route path="/admin/dashboard" element={<AdminDashboard />} />
-            <Route path="/admin/appointment/create" element={<CreateAppointment />} />
-            <Route path="/admin/appointment/edit/:id" element={<EditAppointment />} />
-            <Route path="/user/dashboard" element={<UserDashboard />} />
+            <Route path="/admin/dashboard" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
+            <Route path="/admin/appointment/create" element={<AdminRoute><CreateAppointment /></AdminRoute>} />
+            <Route path="/admin/appointment/edit/:id" element={<AdminRoute><EditAppointment /></AdminRoute>} />
+            <Route path="/user/dashboard" element={<UserRoute><UserDashboard /></UserRoute>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <FooterComponent />

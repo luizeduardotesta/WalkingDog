@@ -8,16 +8,18 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import Spinner from 'react-bootstrap/Spinner';
 
-const validationSchema = yup.object({
-    email: yup
-        .string('Coloque o seu senha email')
-        .email('Coloque um email valido')
-        .required('O email é necessaria'),
-    senha: yup
-        .string('Coloque a sua senha')
-        .min(8, 'A senha deve ter no minomo 8 characters')
-        .required('A senha é necessaria'),
-});
+const createValidationSchema = (emailLabel, senhaLabel) => {
+    return yup.object({
+        email: yup
+            .string(`Coloque o seu ${emailLabel} email`)
+            .email('Coloque um email valido')
+            .required(`O ${emailLabel} é necessaria`),
+        senha: yup
+            .string(`Coloque a sua ${senhaLabel}`)
+            .min(8, `A ${senhaLabel} deve ter no minomo 8 characters`)
+            .required(`A ${senhaLabel} é necessaria`),
+    });
+};
 
 const LogIn = () => {
     const dispatch = useDispatch();
@@ -27,8 +29,6 @@ const LogIn = () => {
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        console.log('isAuthenticated:', isAuthenticated);
-        console.log('userInfo:', userInfo);
         if (isAuthenticated) {
             if (userInfo.tipo === 'admin') {
                 navigate('/admin/dashboard');
@@ -43,7 +43,7 @@ const LogIn = () => {
             email: '',
             senha: ''
         },
-        validationSchema: validationSchema,
+        validationSchema: createValidationSchema('senha', 'password'), // Use the function here
         onSubmit: async (values, actions) => {
             setIsLoading(true);
             await dispatch(userSignInAction(values));
