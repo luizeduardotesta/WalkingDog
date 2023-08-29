@@ -20,6 +20,7 @@ import EditAppointment from './admin/EditAppointment';
 import CreateAppointment from './admin/CreateAppointment';
 import AdminRoute from './components/AdminRoute';
 import UserRoute from './components/UserRoute';
+import Mvv from './pages/Mvv';
 
 
 function App() {
@@ -31,7 +32,7 @@ function App() {
           <NavbarComponent />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/appointment" element={<Appointment />} />
+            <Route path="/mvv" element={<Mvv />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<LogIn />} />
             <Route path="/prices" element={<Prices />} />
@@ -40,6 +41,8 @@ function App() {
             <Route path="/admin/appointment/create" element={<AdminRoute><CreateAppointment /></AdminRoute>} />
             <Route path="/admin/appointment/edit/:id" element={<AdminRoute><EditAppointment /></AdminRoute>} />
             <Route path="/user/dashboard" element={<UserRoute><UserDashboard /></UserRoute>} />
+            <Route path="/user/appointment/create" element={<UserRoute><CreateAppointment /></UserRoute>} />
+            <Route path="/user/appointment/edit/:id" element={<UserRoute><EditAppointment /></UserRoute>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <FooterComponent />

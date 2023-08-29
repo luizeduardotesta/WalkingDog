@@ -3,47 +3,84 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { userLogoutAction } from '../redux/actions/userAction';
 import './Navbar.css';
 
 function NavbarComponent() {
     const isAuthenticated = useSelector(state => state.signIn.isAuthenticated);
+    const userInfo = useSelector(state => state.signIn.userInfo);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const logOut = () => {
+        dispatch(userLogoutAction());
+        window.location.reload(true);
+        setTimeout(() => {
+            navigate('/');
+        }, 500)
+    }
 
     return (
         <Navbar expand="lg" bg="dark" variant="dark">
             <Container>
                 <Navbar.Brand as={NavLink} to="/">
-                    <div>Walking-Dog</div>
+                    <div className="d-flex align-items-center">
+                        <img
+                            src={require('../images/icone_dog_2.jpeg')}
+                            alt="Dog Icon"
+                            style={{ opacity: 0.8 }}
+                        />
+                        Walking-Dog
+                    </div>
                 </Navbar.Brand>
                 <Nav className="d-flex justify-content-center">
-                    <Nav.Link as={NavLink} to="/appointment">
-                        <div className="nav-text">Agende um horário</div>
-                    </Nav.Link>
                     <Nav.Link as={NavLink} to="/prices">
-                        <div className="nav-text">Conheça nossos planos</div>
+                        <div className="nav-text">Nossos pacotes</div>
                     </Nav.Link>
-                    <Nav.Link as={NavLink} to="/register">
+                    <Nav.Link as={NavLink} to="/aboutme">
                         <div className="nav-text">Quem sou eu</div>
+                    </Nav.Link>
+                    <Nav.Link as={NavLink} to="/mvv">
+                        <div className="nav-text">Missão, valor e valores</div>
                     </Nav.Link>
                 </Nav>
                 <Nav className="ms-auto">
-                    {isAuthenticated ? (
+                    {isAuthenticated && userInfo.tipo === 'admin' ? (
+                        <NavDropdown title="Perfil" id="basic-nav-dropdown">
+                            <NavDropdown.Item as={NavLink} to="/admin/dashboard">
+                                <i className="bi bi-pencil-square"> Editar</i>
+                            </NavDropdown.Item>
+                            <NavDropdown.Item as={NavLink} to="/admin/appointment/create">
+                                <i className="bi bi-clock"> Criar Horarios</i>
+                            </NavDropdown.Item>
+                            <NavDropdown.Item as={NavLink} to="/admin/appointment/edit/:id">
+                                <i className="bi bi-clock-history"> Editar Horarios</i>
+                            </NavDropdown.Item>
+                            <NavDropdown.Item onClick={() => logOut()}>
+                                <i className="bi bi-door-open-fill"> Sair</i>
+                            </NavDropdown.Item>
+                        </NavDropdown>
+                    ) : isAuthenticated ? (
                         <NavDropdown title="Perfil" id="basic-nav-dropdown">
                             <NavDropdown.Item as={NavLink} to="/user/dashboard">
-                                <i class="bi bi-pencil-square"> Editar</i>
+                                <i className="bi bi-pencil-square"> Editar</i>
                             </NavDropdown.Item>
-                            <NavDropdown.Item href="/admin/appointment/create">
-                                <i class="bi bi-clock-history"> Meus Horarios</i>
+                            <NavDropdown.Item href="/user/appointment/create">
+                                <i className="bi bi-clock"> Meus Horarios</i>
                             </NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">
-                                <i class="bi bi-door-open-fill"> Sair</i>
+                            <NavDropdown.Item as={NavLink} to="/user/appointment/edit/:id">
+                                <i className="bi bi-clock-history"> Editar Horarios</i>
+                            </NavDropdown.Item>
+                            <NavDropdown.Item onClick={() => logOut()}>
+                                <i className="bi bi-door-open-fill"> Sair</i>
                             </NavDropdown.Item>
                         </NavDropdown>
                     ) : (
                         <Nav.Link as={NavLink} to="/login">
                             <div className="nav-text">
-                                <i class="bi bi-door-closed-fill"> Entrar</i>
+                                <i className="bi bi-door-closed-fill"> Entrar</i>
                             </div>
                         </Nav.Link>
                     )}
