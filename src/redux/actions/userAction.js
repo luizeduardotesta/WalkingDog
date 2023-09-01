@@ -12,7 +12,10 @@ import {
     USER_SIGNIN_SUCCESS,
     USER_SIGNUP_FAIL,
     USER_SIGNUP_REQUEST,
-    USER_SIGNUP_SUCCESS
+    USER_SIGNUP_SUCCESS,
+    USER_UPDATE_PROFILE_REQUEST,
+    USER_UPDATE_PROFILE_SUCCESS,
+    USER_UPDATE_PROFILE_FAIL
 } from "../constants/userConstant";
 
 export const userSignUpAction = (user) => async (dispatch) => {
@@ -84,6 +87,27 @@ export const userLogoutAction = () => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: USER_LOGOUT_FAIL,
+            payload: error.response.data.error
+        });
+        toast.error(error.response.data.error);
+    }
+};
+
+export const updateUserProfileAction = (user) => async (dispatch, getState) => {
+    try {
+        dispatch({ type: USER_UPDATE_PROFILE_REQUEST });
+        const { data } = await axios.put("/api/updateuserprofile", user);
+        dispatch({
+            type: USER_UPDATE_PROFILE_SUCCESS,
+            payload: data,
+        });
+        toast.success("Atualizado com sucesso!");
+
+        dispatch({ type: USER_LOAD_SUCCESS, payload: data });
+        localStorage.setItem('userInfo', JSON.stringify(data));
+    } catch (error) {
+        dispatch({
+            type: USER_UPDATE_PROFILE_FAIL,
             payload: error.response.data.error
         });
         toast.error(error.response.data.error);

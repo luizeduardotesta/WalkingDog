@@ -70,9 +70,6 @@ function NavbarComponent() {
                             <NavDropdown.Item href="/user/appointment/create">
                                 <i className="bi bi-clock"> Meus Horarios</i>
                             </NavDropdown.Item>
-                            <NavDropdown.Item as={NavLink} to="/user/appointment/edit/:id">
-                                <i className="bi bi-clock-history"> Editar Horarios</i>
-                            </NavDropdown.Item>
                             <NavDropdown.Item onClick={() => logOut()}>
                                 <i className="bi bi-door-open-fill"> Sair</i>
                             </NavDropdown.Item>

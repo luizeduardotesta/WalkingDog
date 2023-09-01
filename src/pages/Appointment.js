@@ -24,7 +24,7 @@ function Appointment() {
             <ul>
                 {appointments.map(appointment => (
                     <li key={appointment._id}>
-                        Name: {appointment.name}, Date: {appointment.date}
+                        Nome: {appointment.nome}, Date: {appointment.date}
                     </li>
                 ))}
             </ul>

@@ -19,7 +19,7 @@ function AdminDashboard() {
             {user ? (
                 <>
                     <h1>User Profile</h1>
-                    <p>Name: {user.name}</p>
+                    <p>Nome: {user.nome}</p>
                     <p>Email: {user.email}</p>
                     {/* Render other user data fields */}
                 </>
