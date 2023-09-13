@@ -52,11 +52,8 @@ function NavbarComponent() {
                             <NavDropdown.Item as={NavLink} to="/admin/dashboard">
                                 <i className="bi bi-pencil-square"> Editar</i>
                             </NavDropdown.Item>
-                            <NavDropdown.Item as={NavLink} to="/admin/appointment/create">
-                                <i className="bi bi-clock"> Criar Horarios</i>
-                            </NavDropdown.Item>
-                            <NavDropdown.Item as={NavLink} to="/admin/appointment/edit/:id">
-                                <i className="bi bi-clock-history"> Editar Horarios</i>
+                            <NavDropdown.Item as={NavLink} to="/admin/appointment">
+                                <i className="bi bi-clock"> Ver e Editar Horarios</i>
                             </NavDropdown.Item>
                             <NavDropdown.Item onClick={() => logOut()}>
                                 <i className="bi bi-door-open-fill"> Sair</i>
@@ -67,7 +64,7 @@ function NavbarComponent() {
                             <NavDropdown.Item as={NavLink} to="/user/dashboard">
                                 <i className="bi bi-pencil-square"> Editar</i>
                             </NavDropdown.Item>
-                            <NavDropdown.Item href="/user/appointment/create">
+                            <NavDropdown.Item href="/user/appointment">
                                 <i className="bi bi-clock"> Meus Horarios</i>
                             </NavDropdown.Item>
                             <NavDropdown.Item onClick={() => logOut()}>

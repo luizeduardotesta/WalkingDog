@@ -35,6 +35,8 @@ function App() {
             <Route path="/mvv" element={<Mvv />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<LogIn />} />
+            <Route path="/admin/appointment" element={<AdminRoute><Appointment /></AdminRoute>} />
+            <Route path="/user/appointment" element={<UserRoute><Appointment /></UserRoute>} />
             <Route path="/prices" element={<Prices />} />
             <Route path="/aboutme" element={<AboutMe />} />
             <Route path="/admin/dashboard" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
