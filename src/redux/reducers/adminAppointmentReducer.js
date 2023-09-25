@@ -19,7 +19,7 @@ import {
     ADMIN_APPOINTMENT_UPDATE_SUCCESS,
     ADMIN_APPOINTMENT_UPDATE_FAIL,
     ADMIN_APPOINTMENT_UPDATE_RESET,
-} from '../constants/appointmentConstant';
+} from '../constants/adminAppointmentConstant';
 
 export const adminAppointmentReducerCreate = (state = {}, action) => {
     switch (action.type) {

@@ -65,6 +65,9 @@ function NavbarComponent() {
                                 <i className="bi bi-pencil-square"> Editar</i>
                             </NavDropdown.Item>
                             <NavDropdown.Item href="/user/appointment">
+                                <i className="bi bi-clock"> Marcar Horarios</i>
+                            </NavDropdown.Item>
+                            <NavDropdown.Item href="/user/appointment">
                                 <i className="bi bi-clock"> Meus Horarios</i>
                             </NavDropdown.Item>
                             <NavDropdown.Item onClick={() => logOut()}>
