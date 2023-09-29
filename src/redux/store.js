@@ -42,20 +42,34 @@ let initialState = {
     signIn: {
         userInfo: localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null
     },
-    appointmentCreate: {}, // Add this line to match your reducer structure
+    appointmentCreate: {
+        loading: false,
+        appointment: null,
+        success: false,
+        error: null
+    },
     appointmentShow: {
-        appointments: [] // Add this line to match your reducer structure
+        loading: false,
+        appointments: [],
+        error: null
     },
     appointmentShowSingle: {
-        appointment: null // Add this line to match your reducer structure
+        loading: false,
+        appointment: null,
+        error: null
     },
     appointmentDelete: {
-        success: false // Add this line to match your reducer structure
+        loading: false,
+        success: false,
+        error: null
     },
     appointmentUpdate: {
-        appointment: null // Add this line to match your reducer structure
+        loading: false,
+        appointment: null,
+        error: null
     },
 };
+
 
 const middleware = [thunk];
 

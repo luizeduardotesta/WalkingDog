@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { format, startOfWeek, addDays, isSameMonth, isSameDay } from 'date-fns';
 import { useSelector, useDispatch } from 'react-redux';
 import { showAppointmentsAction, createAppointmentAction } from '../redux/actions/appointmentActions';
-import './Appointment.css'
+import ptBR from 'date-fns/locale/pt-BR';
+import './Calendar.css'
 
 function Calendar() {
     const currentDate = new Date();
@@ -13,21 +14,19 @@ function Calendar() {
     const dispatch = useDispatch();
     const [selectedDate, setSelectedDate] = useState(null);
 
-    // Fetch appointments from Redux store when the component mounts
     useEffect(() => {
         dispatch(showAppointmentsAction());
     }, [dispatch]);
 
-    // Access the appointments data from the Redux store
     const appointments = useSelector(state => state.appointments);
 
     const renderHeader = () => {
         const dateFormat = 'MMMM yyyy';
         return (
             <div className="calendar-header">
-                <button onClick={prevMonth}>Previous</button>
-                <span>{format(currentMonth, dateFormat)}</span>
-                <button onClick={nextMonth}>Next</button>
+                <button onClick={prevMonth}>Anterior</button>
+                <span>{format(currentMonth, dateFormat, { locale: ptBR })}</span>
+                <button onClick={nextMonth}>Próximo</button>
             </div>
         );
     };
@@ -41,13 +40,13 @@ function Calendar() {
     };
 
     const renderDays = () => {
-        const dateFormat = 'EEEE';
+        const dateFormat = 'EEEEEE';
         const days = [];
         let startDate = monthStart;
         for (let i = 0; i < 7; i++) {
             days.push(
                 <div className="calendar-day" key={i}>
-                    {format(startDate, dateFormat)}
+                    {format(startDate, dateFormat, { locale: ptBR })}
                 </div>
             );
             startDate = addDays(startDate, 1);
@@ -127,8 +126,10 @@ function Calendar() {
                     <li key={appointment.id}>
                         {/* Display appointment details */}
                         {appointment.title} at {format(appointment.date, 'hh:mm a')}
+                        <button>Edit</button>
                     </li>
                 ))}
+
             </ul>
         );
     };
